@@ -1,0 +1,60 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  box-sizing: border-box;
+  max-width: 1440px;
+  margin: auto;
+  padding: 0 100px 0 100px;
+}
+
+* {
+  text-decoration: none;
+  list-style-type: none;
+}
+
+h1 {
+  font-family: "DM Sans";
+}
+
+input {
+  font-family: "lato";
+}
+
+header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 42px 0 17px 0;
+}
+
+header h1 {
+  font-size: 36px;
+  color: #d04f4f;
+  font-weight: 700;
+}
+
+.section {
+  margin-bottom: 25px;
+  display: flex;
+}
+.section__research-bar {
+  width: 100%;
+  height: 69px;
+  border-radius: 5px;
+  background-color: #e7e7e7;
+  border: none;
+  font-size: 18px;
+  padding-left: 22px;
+}
+.section__research-label {
+  padding-top: 17.5px;
+  position: relative;
+  right: 52px;
+}/*# sourceMappingURL=main.css.map */
