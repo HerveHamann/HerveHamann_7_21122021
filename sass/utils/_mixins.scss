@@ -1,0 +1,15 @@
+@mixin tag {
+  color: $color-tag-font;
+  font-family: "lato";
+  border-radius: $radius-box;
+  font-size: $size-tag-font;
+  font-weight: $weight-tag-font;
+  padding: 10px 55px 10.5px 20px;
+  position: relative;
+}
+
+@mixin cancel-tag {
+  border: none;
+  position: absolute;
+  right: 22px;
+}

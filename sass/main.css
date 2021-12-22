@@ -41,6 +41,7 @@ header h1 {
 }
 
 .section {
+  position: relative;
   margin-bottom: 25px;
   display: flex;
 }
@@ -55,6 +56,65 @@ header h1 {
 }
 .section__research-label {
   padding-top: 17.5px;
+  position: absolute;
+  right: 16.5px;
+}
+
+.tag-bar {
+  display: flex;
+  flex-wrap: wrap;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+}
+.tag-bar__Ingredient-tag {
+  background-color: #3282f7;
+  color: #ffffff;
+  font-family: "lato";
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 55px 10.5px 20px;
   position: relative;
-  right: 52px;
+}
+.tag-bar__Ingredient-tag__cancel-tag {
+  border: none;
+  position: absolute;
+  right: 22px;
+  background-color: #3282f7;
+}
+.tag-bar__Device-tag {
+  background-color: #68d9a4;
+  color: #ffffff;
+  font-family: "lato";
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 55px 10.5px 20px;
+  position: relative;
+}
+.tag-bar__Device-tag__cancel-tag {
+  border: none;
+  position: absolute;
+  right: 22px;
+  background-color: #68d9a4;
+}
+.tag-bar__Ustensils-tag {
+  background-color: #ed6454;
+  color: #ffffff;
+  font-family: "lato";
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 55px 10.5px 20px;
+  position: relative;
+}
+.tag-bar__Ustensils-tag__cancel-tag {
+  border: none;
+  position: absolute;
+  right: 22px;
+  background-color: #ed6454;
+}
+
+#cancel-tag {
+  border: red solid 1px;
 }/*# sourceMappingURL=main.css.map */

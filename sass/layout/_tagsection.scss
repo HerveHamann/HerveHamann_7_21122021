@@ -1,0 +1,32 @@
+.tag-bar {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  &__Ingredient-tag {
+    background-color: $color-ingredient;
+    @include tag;
+    &__cancel-tag {
+      @include cancel-tag;
+      background-color: $color-ingredient;
+    }
+  }
+  &__Device-tag {
+    background-color: $color-device;
+    @include tag;
+    &__cancel-tag {
+      @include cancel-tag;
+      background-color: $color-device;
+    }
+  }
+  &__Ustensils-tag {
+    background-color: $color-ustensils;
+    @include tag;
+    &__cancel-tag {
+      @include cancel-tag;
+      background-color: $color-ustensils;
+    }
+  }
+}
+#cancel-tag {
+  border: red solid 1px;
+}
