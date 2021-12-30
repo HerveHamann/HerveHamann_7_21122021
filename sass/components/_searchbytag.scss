@@ -1,0 +1,75 @@
+.combox-ingredient {
+  background-color: $color-ingredient;
+  @include combobox;
+  &__combobox {
+    width: 100%;
+    &__combobox-searchfield {
+      position: relative;
+      &__label {
+        margin: 0 25px 0 15px;
+      }
+      &__arrowdown {
+        position: absolute;
+        top: 5px;
+        right: 18px;
+      }
+    }
+    &__list {
+      margin-top: 23px;
+      display: none;
+      flex-wrap: wrap;
+      row-gap: 10px;
+      column-gap: 45px;
+      padding: 0 19px 16px 19px;
+      border: red solid 1px;
+    }
+    &__list li {
+      border: red solid 1px;
+    }
+  }
+}
+
+#ingredient {
+  background-color: $color-ingredient;
+  @include input;
+}
+#ingredient::placeholder {
+  color: $color-tag-font;
+  opacity: 0.5;
+}
+
+// .list {
+//   display: none;
+// }
+
+.combox-device {
+  background-color: $color-device;
+  @include combobox;
+  &__combobox {
+    &__combobox-searchfield {
+      &__label {
+        margin: 0 45px 0 15px;
+      }
+    }
+  }
+}
+
+#device {
+  display: none;
+}
+
+.combox-ustensils {
+  background-color: $color-ustensils;
+  @include combobox;
+  &__combobox {
+    &__combobox-searchfield {
+      &__label {
+        margin: 0 29px 0 15px;
+      }
+    }
+  }
+}
+
+#ustensils {
+  display: none;
+}

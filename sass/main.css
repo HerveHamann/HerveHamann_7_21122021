@@ -40,12 +40,13 @@ header h1 {
   font-weight: 700;
 }
 
-.section {
+.mainsearch {
   position: relative;
   margin-bottom: 25px;
   display: flex;
 }
-.section__research-bar {
+
+.mainsearch__research-bar {
   width: 100%;
   height: 69px;
   border-radius: 5px;
@@ -54,7 +55,8 @@ header h1 {
   font-size: 18px;
   padding-left: 22px;
 }
-.section__research-label {
+
+.mainsearch__research-label {
   padding-top: 17.5px;
   position: absolute;
   right: 16.5px;
@@ -66,6 +68,7 @@ header h1 {
   -moz-column-gap: 20px;
        column-gap: 20px;
 }
+
 .tag-bar__Ingredient-tag {
   background-color: #3282f7;
   color: #ffffff;
@@ -82,6 +85,7 @@ header h1 {
   right: 22px;
   background-color: #3282f7;
 }
+
 .tag-bar__Device-tag {
   background-color: #68d9a4;
   color: #ffffff;
@@ -98,6 +102,7 @@ header h1 {
   right: 22px;
   background-color: #68d9a4;
 }
+
 .tag-bar__Ustensils-tag {
   background-color: #ed6454;
   color: #ffffff;
@@ -115,6 +120,117 @@ header h1 {
   background-color: #ed6454;
 }
 
-#cancel-tag {
+.secondarysearch {
+  margin-top: 15px;
+  display: flex;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+}
+
+.combox-ingredient {
+  background-color: #3282f7;
+  width: 170px;
+  height: 69px;
+  border-radius: 5px;
+  font-family: "lato";
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+.combox-ingredient__combobox {
+  width: 100%;
+}
+.combox-ingredient__combobox__combobox-searchfield {
+  position: relative;
+}
+.combox-ingredient__combobox__combobox-searchfield__label {
+  margin: 0 25px 0 15px;
+}
+.combox-ingredient__combobox__combobox-searchfield__arrowdown {
+  position: absolute;
+  top: 5px;
+  right: 18px;
+}
+.combox-ingredient__combobox__list {
+  margin-top: 23px;
+  display: none;
+  flex-wrap: wrap;
+  row-gap: 10px;
+  -moz-column-gap: 45px;
+       column-gap: 45px;
+  padding: 0 19px 16px 19px;
   border: red solid 1px;
+}
+.combox-ingredient__combobox__list li {
+  border: red solid 1px;
+}
+
+#ingredient {
+  background-color: #3282f7;
+  font-family: "lato";
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  display: none;
+  margin: 0 25px 0 15px;
+  width: 65%;
+  border: none;
+  outline: none;
+}
+
+#ingredient::-moz-placeholder {
+  color: #ffffff;
+  opacity: 0.5;
+}
+
+#ingredient:-ms-input-placeholder {
+  color: #ffffff;
+  opacity: 0.5;
+}
+
+#ingredient::placeholder {
+  color: #ffffff;
+  opacity: 0.5;
+}
+
+.combox-device {
+  background-color: #68d9a4;
+  width: 170px;
+  height: 69px;
+  border-radius: 5px;
+  font-family: "lato";
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+.combox-device__combobox__combobox-searchfield__label {
+  margin: 0 45px 0 15px;
+}
+
+#device {
+  display: none;
+}
+
+.combox-ustensils {
+  background-color: #ed6454;
+  width: 170px;
+  height: 69px;
+  border-radius: 5px;
+  font-family: "lato";
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+.combox-ustensils__combobox__combobox-searchfield__label {
+  margin: 0 29px 0 15px;
+}
+
+#ustensils {
+  display: none;
 }/*# sourceMappingURL=main.css.map */

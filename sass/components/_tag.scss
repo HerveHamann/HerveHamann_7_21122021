@@ -1,0 +1,25 @@
+.tag-bar__Ingredient-tag {
+  background-color: $color-ingredient;
+  @include tag;
+  &__cancel-tag {
+    @include cancel-tag;
+    background-color: $color-ingredient;
+  }
+}
+.tag-bar__Device-tag {
+  background-color: $color-device;
+  @include tag;
+  &__cancel-tag {
+    @include cancel-tag;
+    background-color: $color-device;
+  }
+}
+
+.tag-bar__Ustensils-tag {
+  background-color: $color-ustensils;
+  @include tag;
+  &__cancel-tag {
+    @include cancel-tag;
+    background-color: $color-ustensils;
+  }
+}

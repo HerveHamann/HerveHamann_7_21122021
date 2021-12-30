@@ -13,3 +13,27 @@
   position: absolute;
   right: 22px;
 }
+
+@mixin combobox {
+  width: 170px;
+  height: 69px;
+  border-radius: $radius-box;
+  font-family: "lato";
+  color: $color-tag-font;
+  font-size: $size-searchtag-font;
+  font-weight: $weight-tag-font;
+  display: flex;
+  align-items: center;
+}
+
+@mixin input {
+  font-family: "lato";
+  color: $color-tag-font;
+  font-size: $size-searchtag-font;
+  font-weight: $weight-tag-font;
+  display: none;
+  margin: 0 25px 0 15px;
+  width: 65%;
+  border: none;
+  outline: none;
+}
