@@ -1,38 +1,74 @@
-const ingredientBox = document.querySelector(".combox-ingredient");
-const ingredientComboBox = document.querySelector(
-  ".combox-ingredient__combobox"
-);
-const ingredientSearchBar = document.getElementById("ingredient");
-const ingredientSearchBarLabel = document.querySelector(
-  ".combox-ingredient__combobox__combobox-searchfield__label"
-);
-const ingredientArrow = document.querySelector(
-  ".combox-ingredient__combobox__combobox-searchfield__arrowdown"
-);
+const show = (type) => {
+  const box = document.querySelector(`.combox-${type}`);
+  const comboBox = document.querySelector(`.combox-${type}__combobox`);
+  const searchBar = document.getElementById(`${type}`);
+  const searchBarLabel = document.querySelector(
+    `.combox-${type}__combobox__combobox-searchfield__label`
+  );
+  const arrow = document.querySelector(
+    `.combox-${type}__combobox__combobox-searchfield__arrowdown`
+  );
+  const list = document.querySelector(`.combox-${type}__combobox__list`);
 
-const ingredientList = document.querySelector(
-  ".combox-ingredient__combobox__list"
-);
+  box.style.width = "667px";
+  box.style.height = "397px";
+  box.style.alignItems = "start";
+  comboBox.style.marginTop = "23px";
+  searchBar.style.display = "block";
+  list.style.display = "flex";
+  searchBarLabel.style.display = "none";
+  arrow.style.transform = "rotate(180deg)";
+};
 
-ingredientSearchBarLabel.addEventListener("click", () => {
-  ingredientBox.style.width = "667px";
-  ingredientBox.style.height = "397px";
-  ingredientBox.style.alignItems = "start";
-  ingredientComboBox.style.marginTop = "23px";
-  ingredientSearchBar.style.display = "block";
-  ingredientList.style.display = "flex";
-  ingredientSearchBarLabel.style.display = "none";
-  ingredientArrow.style.transform = "rotate(180deg)";
+const hide = (type) => {
+  const box = document.querySelector(`.combox-${type}`);
+  const comboBox = document.querySelector(`.combox-${type}__combobox`);
+  const searchBar = document.getElementById(`${type}`);
+  const searchBarLabel = document.querySelector(
+    `.combox-${type}__combobox__combobox-searchfield__label`
+  );
+  const arrow = document.querySelector(
+    `.combox-${type}__combobox__combobox-searchfield__arrowdown`
+  );
+  const list = document.querySelector(`.combox-${type}__combobox__list`);
+
+  box.style.width = "170px";
+  box.style.height = "69px";
+  box.style.alignItems = "center";
+  comboBox.style.marginTop = "0px";
+  searchBar.style.display = "none";
+  list.style.display = "none";
+  searchBarLabel.style.display = "block";
+  arrow.style.transform = "rotate(360deg)";
+};
+
+const box = [
+  document.querySelector(".combox-ingredient"),
+  document.querySelector(".combox-device"),
+  document.querySelector(".combox-ustensils"),
+];
+
+box.forEach((boxes) => {
+  boxes.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (boxes.className === "combox-ingredient") {
+      show("ingredient");
+    }
+    if (boxes.className === "combox-device") {
+      show("device");
+    }
+    if (boxes.className === "combox-ustensils") {
+      show("ustensils");
+    }
+    const handleClosure = (event) => {
+      if (!boxes.contains(event.target)) {
+        hide("ingredient");
+        hide("device");
+        hide("ustensils");
+      }
+    };
+    window.addEventListener("click", (event) => {
+      handleClosure(event);
+    });
+  });
 });
-
-// .addEventListener("click", () => {
-//   ingredientBox.style.width = "170px";
-//   ingredientBox.style.color = "red";
-//   ingredientBox.style.height = "69px";
-//   ingredientBox.style.alignItems = "center";
-//   ingredientComboBox.style.marginTop = "0px";
-//   ingredientSearchBar.style.display = "none";
-//   ingredientList.style.display = "none";
-//   ingredientSearchBarLabel.style.display = "block";
-//   ingredientArrow.style.transform = "rotate(360deg)";
-// });

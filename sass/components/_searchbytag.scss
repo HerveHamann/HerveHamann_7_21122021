@@ -15,16 +15,10 @@
       }
     }
     &__list {
-      margin-top: 23px;
-      display: none;
-      flex-wrap: wrap;
-      row-gap: 10px;
-      column-gap: 45px;
-      padding: 0 19px 16px 19px;
-      border: red solid 1px;
+      @include list;
     }
     &__list li {
-      border: red solid 1px;
+      width: 150px;
     }
   }
 }
@@ -38,38 +32,70 @@
   opacity: 0.5;
 }
 
-// .list {
-//   display: none;
-// }
-
 .combox-device {
   background-color: $color-device;
   @include combobox;
   &__combobox {
+    width: 100%;
     &__combobox-searchfield {
+      position: relative;
       &__label {
-        margin: 0 45px 0 15px;
+        margin: 0 25px 0 15px;
       }
+      &__arrowdown {
+        position: absolute;
+        top: 5px;
+        right: 18px;
+      }
+    }
+    &__list {
+      @include list;
+    }
+    &__list li {
+      width: 150px;
     }
   }
 }
-
 #device {
-  display: none;
+  background-color: $color-device;
+  @include input;
+}
+
+#device::placeholder {
+  color: $color-tag-font;
+  opacity: 0.5;
 }
 
 .combox-ustensils {
   background-color: $color-ustensils;
   @include combobox;
   &__combobox {
+    width: 100%;
+
     &__combobox-searchfield {
+      position: relative;
       &__label {
-        margin: 0 29px 0 15px;
+        margin: 0 25px 0 15px;
       }
+      &__arrowdown {
+        position: absolute;
+        top: 5px;
+        right: 18px;
+      }
+    }
+    &__list {
+      @include list;
+    }
+    &__list li {
+      width: 150px;
     }
   }
 }
-
 #ustensils {
-  display: none;
+  background-color: $color-ustensils;
+  @include input;
+}
+#ustensils::placeholder {
+  color: $color-tag-font;
+  opacity: 0.5;
 }

@@ -37,3 +37,13 @@
   border: none;
   outline: none;
 }
+
+@mixin list {
+  margin-top: 23px;
+  display: none;
+  flex-direction: column;
+  flex-flow: wrap;
+  row-gap: 10px;
+  column-gap: 86px;
+  padding: 0 19px 16px 19px;
+}
