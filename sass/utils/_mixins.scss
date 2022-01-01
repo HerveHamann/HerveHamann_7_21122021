@@ -24,6 +24,9 @@
   font-weight: $weight-tag-font;
   display: flex;
   align-items: center;
+  cursor: pointer;
+  position: relative;
+  z-index: 99;
 }
 
 @mixin input {

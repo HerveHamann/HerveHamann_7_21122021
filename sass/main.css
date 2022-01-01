@@ -123,6 +123,7 @@ header h1 {
 .secondarysearch {
   margin-top: 15px;
   display: flex;
+  height: 75px;
   -moz-column-gap: 20px;
        column-gap: 20px;
 }
@@ -138,6 +139,9 @@ header h1 {
   font-weight: 700;
   display: flex;
   align-items: center;
+  cursor: pointer;
+  position: relative;
+  z-index: 99;
 }
 .combox-ingredient__combobox {
   width: 100%;
@@ -147,6 +151,7 @@ header h1 {
 }
 .combox-ingredient__combobox__combobox-searchfield__label {
   margin: 0 25px 0 15px;
+  cursor: text;
 }
 .combox-ingredient__combobox__combobox-searchfield__arrowdown {
   position: absolute;
@@ -206,6 +211,9 @@ header h1 {
   font-weight: 700;
   display: flex;
   align-items: center;
+  cursor: pointer;
+  position: relative;
+  z-index: 99;
 }
 .combox-device__combobox {
   width: 100%;
@@ -215,6 +223,7 @@ header h1 {
 }
 .combox-device__combobox__combobox-searchfield__label {
   margin: 0 25px 0 15px;
+  cursor: text;
 }
 .combox-device__combobox__combobox-searchfield__arrowdown {
   position: absolute;
@@ -274,6 +283,9 @@ header h1 {
   font-weight: 700;
   display: flex;
   align-items: center;
+  cursor: pointer;
+  position: relative;
+  z-index: 99;
 }
 .combox-ustensils__combobox {
   width: 100%;
@@ -283,6 +295,7 @@ header h1 {
 }
 .combox-ustensils__combobox__combobox-searchfield__label {
   margin: 0 25px 0 15px;
+  cursor: text;
 }
 .combox-ustensils__combobox__combobox-searchfield__arrowdown {
   position: absolute;
@@ -329,4 +342,57 @@ header h1 {
 #ustensils::placeholder {
   color: #ffffff;
   opacity: 0.5;
+}
+
+.displayrecipe {
+  padding-top: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px 50px;
+}
+
+.displayrecipe__recipecard {
+  width: 30.64%;
+  height: 364px;
+}
+.displayrecipe__recipecard__img {
+  height: 178px;
+  background-color: #c7bebe;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+.displayrecipe__recipecard__description {
+  height: 186px;
+  background-color: #e7e7e7;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  font-family: "lato";
+  font-size: 18px;
+}
+.displayrecipe__recipecard__description__main {
+  height: 62px;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+.displayrecipe__recipecard__description__main__timer {
+  display: flex;
+  -moz-column-gap: 7px;
+       column-gap: 7px;
+  font-weight: 700;
+}
+.displayrecipe__recipecard__description__second {
+  font-size: 12px;
+  display: flex;
+  padding: 0 18px 19px 20px;
+}
+.displayrecipe__recipecard__description__second__ingredient {
+  width: 50%;
+}
+.displayrecipe__recipecard__description__second__ingredient span {
+  font-weight: 700;
+}
+.displayrecipe__recipecard__description__second__cooking {
+  font-family: "roboto";
+  width: 50%;
 }/*# sourceMappingURL=main.css.map */

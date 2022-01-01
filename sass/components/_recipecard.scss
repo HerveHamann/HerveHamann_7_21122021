@@ -1,0 +1,50 @@
+.displayrecipe {
+  &__recipecard {
+    width: 30.64%;
+    height: 364px;
+
+    &__img {
+      height: 178px;
+      background-color: $color-img;
+      border-top-right-radius: $radius-box;
+      border-top-left-radius: $radius-box;
+    }
+    &__description {
+      height: 186px;
+      background-color: $color-search-bar;
+      border-bottom-right-radius: $radius-box;
+      border-bottom-left-radius: $radius-box;
+
+      font-family: "lato";
+      font-size: $size-searchtag-font;
+      &__main {
+        height: 62px;
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+
+        &__timer {
+          display: flex;
+          column-gap: 7px;
+          font-weight: $weight-tag-font;
+        }
+      }
+      &__second {
+        font-size: $size-cardsecondarydescription-font;
+        display: flex;
+        padding: 0 18px 19px 20px;
+
+        &__ingredient {
+          width: 50%;
+        }
+        &__ingredient span {
+          font-weight: $weight-tag-font;
+        }
+        &__cooking {
+          font-family: "roboto";
+          width: 50%;
+        }
+      }
+    }
+  }
+}
