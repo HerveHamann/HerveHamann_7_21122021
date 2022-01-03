@@ -6,12 +6,15 @@
   font-weight: $weight-tag-font;
   padding: 10px 55px 10.5px 20px;
   position: relative;
+  // display: none;
+  cursor: pointer;
 }
 
 @mixin cancel-tag {
   border: none;
   position: absolute;
   right: 22px;
+  cursor: pointer;
 }
 
 @mixin combobox {
