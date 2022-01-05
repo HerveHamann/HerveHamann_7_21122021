@@ -45,11 +45,13 @@
 }
 
 @mixin list {
+  height: 328px;
   margin-top: 23px;
   display: none;
-  flex-direction: column;
+  flex-direction: row;
   flex-flow: wrap;
   row-gap: 10px;
-  column-gap: 86px;
+  column-gap: 70px;
   padding: 0 19px 16px 19px;
+  overflow-y: scroll;
 }

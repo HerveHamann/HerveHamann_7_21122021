@@ -1,4 +1,4 @@
-export default function Display() {
+export default function DisplayMenu() {
   const show = (type) => {
     const box = document.querySelector(`.combox-${type}`);
     const comboBox = document.querySelector(`.combox-${type}__combobox`);

@@ -28,6 +28,9 @@
           column-gap: 7px;
           font-weight: $weight-tag-font;
         }
+        &__title {
+          width: 60%;
+        }
       }
       &__second {
         font-size: $size-cardsecondarydescription-font;
@@ -37,12 +40,21 @@
         &__ingredient {
           width: 50%;
         }
-        &__ingredient span {
+        &__ingredient {
+          font-size: $size-cardsecondarydescription-font;
+          height: 100px;
+          overflow-y: scroll;
+        }
+        &__ingredient span span {
           font-weight: $weight-tag-font;
+          font-size: $size-cardsecondarydescription-font;
         }
         &__cooking {
           font-family: "roboto";
           width: 50%;
+          height: 100px;
+          font-size: $size-cardsecondarydescription-font;
+          overflow-y: scroll;
         }
       }
     }

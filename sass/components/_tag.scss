@@ -1,4 +1,4 @@
-.tag-bar__Ingredient-tag {
+.tag-bar__ingredient-tag {
   background-color: $color-ingredient;
   @include tag;
   &__cancel-tag {
@@ -6,7 +6,7 @@
     background-color: $color-ingredient;
   }
 }
-.tag-bar__Device-tag {
+.tag-bar__device-tag {
   background-color: $color-device;
   @include tag;
   &__cancel-tag {
@@ -15,7 +15,7 @@
   }
 }
 
-.tag-bar__Ustensils-tag {
+.tag-bar__ustensils-tag {
   background-color: $color-ustensils;
   @include tag;
   &__cancel-tag {
