@@ -1,42 +1,42 @@
-export default function RecipecardFactory(recipes) {
-  recipes.recipes.forEach((recipe) => {
-    const recipeSection = document.querySelector(".displayrecipe");
-    const divRecipeCard = document.createElement("div");
-    divRecipeCard.setAttribute("class", "displayrecipe__recipecard");
-    recipeSection.appendChild(divRecipeCard);
+export default function RecipecardFactory(recipe) {
+  const recipeSection = document.querySelector(".displayrecipe");
 
-    const divRecipeCardImage = document.createElement("div");
-    divRecipeCardImage.setAttribute("class", "displayrecipe__recipecard__img");
-    divRecipeCard.appendChild(divRecipeCardImage);
+  const divRecipeCard = document.createElement("div");
+  divRecipeCard.setAttribute("class", "displayrecipe__recipecard");
+  recipeSection.appendChild(divRecipeCard);
 
-    const divRecipeCardDescription = document.createElement("div");
-    divRecipeCardDescription.setAttribute(
-      "class",
-      "displayrecipe__recipecard__description"
-    );
-    divRecipeCard.appendChild(divRecipeCardDescription);
+  const divRecipeCardImage = document.createElement("div");
+  divRecipeCardImage.setAttribute("class", "displayrecipe__recipecard__img");
+  divRecipeCard.appendChild(divRecipeCardImage);
 
-    const divRecipeCardDescriptionMain = document.createElement("div");
-    divRecipeCardDescriptionMain.setAttribute(
-      "class",
-      "displayrecipe__recipecard__description__main"
-    );
-    divRecipeCardDescription.appendChild(divRecipeCardDescriptionMain);
+  const divRecipeCardDescription = document.createElement("div");
+  divRecipeCardDescription.setAttribute(
+    "class",
+    "displayrecipe__recipecard__description"
+  );
+  divRecipeCard.appendChild(divRecipeCardDescription);
 
-    const divRecipeCardDescriptionMainTitle = document.createElement("div");
-    divRecipeCardDescriptionMainTitle.setAttribute(
-      "class",
-      "displayrecipe__recipecard__description__main__title"
-    );
-    divRecipeCardDescriptionMainTitle.innerText = recipe.name;
-    divRecipeCardDescriptionMain.appendChild(divRecipeCardDescriptionMainTitle);
+  const divRecipeCardDescriptionMain = document.createElement("div");
+  divRecipeCardDescriptionMain.setAttribute(
+    "class",
+    "displayrecipe__recipecard__description__main"
+  );
+  divRecipeCardDescription.appendChild(divRecipeCardDescriptionMain);
 
-    const divRecipeCardDescriptionMainTimer = document.createElement("div");
-    divRecipeCardDescriptionMainTimer.setAttribute(
-      "class",
-      "displayrecipe__recipecard__description__main__timer"
-    );
-    divRecipeCardDescriptionMainTimer.innerHTML = `
+  const divRecipeCardDescriptionMainTitle = document.createElement("div");
+  divRecipeCardDescriptionMainTitle.setAttribute(
+    "class",
+    "displayrecipe__recipecard__description__main__title"
+  );
+  divRecipeCardDescriptionMainTitle.innerText = recipe.name;
+  divRecipeCardDescriptionMain.appendChild(divRecipeCardDescriptionMainTitle);
+
+  const divRecipeCardDescriptionMainTimer = document.createElement("div");
+  divRecipeCardDescriptionMainTimer.setAttribute(
+    "class",
+    "displayrecipe__recipecard__description__main__timer"
+  );
+  divRecipeCardDescriptionMainTimer.innerHTML = `
   <svg
   width="20"
   height="20"
@@ -51,52 +51,51 @@ export default function RecipecardFactory(recipes) {
 </svg>
 <span>${recipe.time} min</span>
   `;
-    divRecipeCardDescriptionMain.appendChild(divRecipeCardDescriptionMainTimer);
+  divRecipeCardDescriptionMain.appendChild(divRecipeCardDescriptionMainTimer);
 
-    const divRecipeCardDescriptionSecond = document.createElement("div");
-    divRecipeCardDescriptionSecond.setAttribute(
-      "class",
-      "displayrecipe__recipecard__description__main"
-    );
-    divRecipeCardDescription.appendChild(divRecipeCardDescriptionSecond);
+  const divRecipeCardDescriptionSecond = document.createElement("div");
+  divRecipeCardDescriptionSecond.setAttribute(
+    "class",
+    "displayrecipe__recipecard__description__main"
+  );
+  divRecipeCardDescription.appendChild(divRecipeCardDescriptionSecond);
 
-    const divRecipeCardDescriptionSecondIngredient =
-      document.createElement("div");
-    divRecipeCardDescriptionSecondIngredient.setAttribute(
-      "class",
-      "displayrecipe__recipecard__description__second__ingredient"
-    );
+  const divRecipeCardDescriptionSecondIngredient =
+    document.createElement("div");
+  divRecipeCardDescriptionSecondIngredient.setAttribute(
+    "class",
+    "displayrecipe__recipecard__description__second__ingredient"
+  );
 
-    divRecipeCardDescriptionSecond.appendChild(
-      divRecipeCardDescriptionSecondIngredient
-    );
+  divRecipeCardDescriptionSecond.appendChild(
+    divRecipeCardDescriptionSecondIngredient
+  );
 
-    const subIngredient = recipe.ingredients;
-    subIngredient.forEach((ingredient) => {
-      const RecipeIngredient = document.createElement("span");
-      if (
-        ingredient.unit !== undefined &&
-        ingredient.quantity !== undefined &&
-        ingredient.unit !== undefined
-      ) {
-        RecipeIngredient.innerHTML = `<span>${ingredient.ingredient}</span>: ${ingredient.quantity} ${ingredient.unit} </br>`;
-      }
-      if (ingredient.unit === undefined) {
-        RecipeIngredient.innerHTML = `<span>${ingredient.ingredient}:</span> ${ingredient.quantity} </br>`;
-      }
-      if (ingredient.quantity === undefined && ingredient.unit === undefined)
-        RecipeIngredient.innerHTML = `<span>${ingredient.ingredient}</span> </br>`;
+  const subIngredient = recipe.ingredients;
+  subIngredient.forEach((ingredient) => {
+    const RecipeIngredient = document.createElement("span");
+    if (
+      ingredient.unit !== undefined &&
+      ingredient.quantity !== undefined &&
+      ingredient.unit !== undefined
+    ) {
+      RecipeIngredient.innerHTML = `<span>${ingredient.ingredient}</span>: ${ingredient.quantity} ${ingredient.unit} </br>`;
+    }
+    if (ingredient.unit === undefined) {
+      RecipeIngredient.innerHTML = `<span>${ingredient.ingredient}:</span> ${ingredient.quantity} </br>`;
+    }
+    if (ingredient.quantity === undefined && ingredient.unit === undefined)
+      RecipeIngredient.innerHTML = `<span>${ingredient.ingredient}</span> </br>`;
 
-      divRecipeCardDescriptionSecondIngredient.appendChild(RecipeIngredient);
-    });
-    const divRecipeCardDescriptionSecondCooking = document.createElement("div");
-    divRecipeCardDescriptionSecondCooking.setAttribute(
-      "class",
-      "displayrecipe__recipecard__description__second__cooking"
-    );
-    divRecipeCardDescriptionSecondCooking.innerText = recipe.description;
-    divRecipeCardDescriptionSecond.appendChild(
-      divRecipeCardDescriptionSecondCooking
-    );
+    divRecipeCardDescriptionSecondIngredient.appendChild(RecipeIngredient);
   });
+  const divRecipeCardDescriptionSecondCooking = document.createElement("div");
+  divRecipeCardDescriptionSecondCooking.setAttribute(
+    "class",
+    "displayrecipe__recipecard__description__second__cooking"
+  );
+  divRecipeCardDescriptionSecondCooking.innerText = recipe.description;
+  divRecipeCardDescriptionSecond.appendChild(
+    divRecipeCardDescriptionSecondCooking
+  );
 }

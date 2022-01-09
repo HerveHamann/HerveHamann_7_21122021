@@ -1,23 +1,10 @@
-export default function ListAndTagsFactory(recipes) {
-  // création du total des éléments
-  const totalApplience = [];
-  const totalIngredients = [];
-  const totalUstensils = [];
-  recipes.recipes.forEach((recipe) => {
-    totalApplience.push(recipe.appliance);
-    const subIngredient = recipe.ingredients;
-    subIngredient.forEach((ingredient) => {
-      totalIngredients.push(ingredient.ingredient);
-    });
-    const SubUstensils = recipe.ustensils;
-    SubUstensils.forEach((ustensil) => {
-      totalUstensils.push(ustensil);
-    });
-  });
-  // réduction que chaque élément soit unique
-  const uniqueApplience = [...new Set(totalApplience)];
-  const uniqueIngredients = [...new Set(totalIngredients)];
-  const uniqueUstensils = [...new Set(totalUstensils)];
+// création du total des éléments
+
+export default function ListAndTagsFactory(
+  uniqueApplience,
+  uniqueIngredients,
+  uniqueUstensils
+) {
   // Fonction de création des tags
   const CreateTag = (type, category) => {
     const tagBar = document.querySelector(".tag-bar");
