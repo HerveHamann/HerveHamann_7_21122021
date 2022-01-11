@@ -418,4 +418,15 @@ header h1 {
   height: 100px;
   font-size: 12px;
   overflow-y: scroll;
+}
+
+.noresult {
+  font-family: lato;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  border: 5px solid #d04f4f;
+  border-radius: 5px;
+  padding: 5px 0 5px 0;
+  display: none;
 }/*# sourceMappingURL=main.css.map */
