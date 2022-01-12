@@ -11,7 +11,8 @@ function TagAndListReset(type) {
   const existigTagArray = Array.from(existigTag);
 
   existigTagArray.forEach((e) => {
-    e.style.display = "none";
+    // e.style.display = "none";
+    e.remove();
   });
 }
 
@@ -99,5 +100,58 @@ export default function searchByTag(recipes) {
   }
   ustensilsInput.addEventListener("keyup", () => {
     ustensilSearch();
+  });
+
+  function SelectIngredientandRecipe() {}
+
+  const ingredientLi = document.getElementsByClassName("ingredient-list");
+  const ingredientLiArray = Array.from(ingredientLi);
+  console.log(ingredientLi);
+  ingredientLiArray.forEach((e) => {
+    e.addEventListener("click", () => {
+      console.log(e.innerHTML);
+      const dataIngredientOnClick = e.innerHTML;
+
+      function IngredientFind(recipe) {
+        if (
+          recipe.ingredients.find((object) =>
+            object.ingredient
+              .toLocaleLowerCase()
+              .includes(dataIngredientOnClick.toLocaleLowerCase())
+          )
+        )
+          return true;
+        return false;
+      }
+
+      const resultIngredient = recipes.filter((recipe) =>
+        IngredientFind(recipe, dataIngredientOnClick)
+      );
+
+      const recipeSection = document.querySelector(".displayrecipe");
+      recipeSection.innerHTML = " ";
+
+      resultIngredient.forEach((item) => {
+        RecipecardFactory(item);
+      });
+
+      console.log(resultIngredient);
+
+      const existigTag = document.getElementsByClassName(
+        `tag-bar__ingredient-tag`
+      );
+
+      const existigTagArray = Array.from(existigTag);
+
+      existigTagArray.forEach((element) => {
+        if (
+          element.innerText.replace(/\s+/g, "") ===
+          dataIngredientOnClick.replace(/\s+/g, "")
+        ) {
+          const object = element;
+          object.style.display = "block";
+        }
+      });
+    });
   });
 }

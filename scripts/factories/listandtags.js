@@ -27,6 +27,7 @@ ${type}
 const CreateList = (type, category) => {
   const list = document.createElement("li");
   list.textContent = type;
+  list.setAttribute("class", `${category}-list`);
   const listContainer = document.querySelector(
     `.combox-${category}__combobox__list`
   );

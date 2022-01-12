@@ -8,7 +8,7 @@ import searchByTag from "./utils/bytagSearch.js";
 // Display des menus
 
 DisplayMenu();
-
+// display des listes et tags
 ListAndTagsFactory(recipes);
 
 // display des 50 recettes
