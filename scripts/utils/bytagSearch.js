@@ -1,25 +1,152 @@
-import { CreateList, CreateTag } from "../factories/listandtags.js";
+import { CreateList, ListFactory } from "../factories/listandtags.js";
 import RecipecardFactory from "../factories/recipecard.js";
 
-function TagAndListReset(type) {
-  const ListContainer = document.querySelector(
-    `.combox-${type}__combobox__list`
-  );
-  ListContainer.innerHTML = " ";
-  const existigTag = document.getElementsByClassName(`tag-bar__${type}-tag`);
-
-  const existigTagArray = Array.from(existigTag);
-
-  existigTagArray.forEach((e) => {
-    // e.style.display = "none";
-    e.remove();
-  });
-}
+import { ResetAllList, ResetRecipe, ListReset } from "./utilsFunction.js";
 
 export default function searchByTag(recipes) {
   const ingredientInput = document.getElementById("ingredient");
   const deviceInput = document.getElementById("device");
   const ustensilsInput = document.getElementById("ustensils");
+
+  function SelectIngredientandRecipe() {
+    const ingredientLi = document.getElementsByClassName("ingredient-list");
+    const ingredientLiArray = Array.from(ingredientLi);
+
+    ingredientLiArray.forEach((e) => {
+      e.addEventListener("click", () => {
+        const dataIngredientOnClick = e.innerHTML;
+
+        function IngredientFind(recipe) {
+          if (
+            recipe.ingredients.find(
+              (object) =>
+                object.ingredient
+                  .toLocaleLowerCase()
+                  .includes(dataIngredientOnClick.toLocaleLowerCase()) &&
+                object.ingredient.length === dataIngredientOnClick.length
+            )
+          )
+            return true;
+          return false;
+        }
+
+        const resultIngredient = recipes.filter((recipe) =>
+          IngredientFind(recipe, dataIngredientOnClick)
+        );
+
+        console.log(resultIngredient);
+        ResetAllList();
+        ResetRecipe();
+        ListFactory(resultIngredient);
+
+        resultIngredient.forEach((item) => {
+          RecipecardFactory(item);
+        });
+
+        const existingTag = document.getElementsByClassName(
+          `tag-bar__ingredient-tag`
+        );
+
+        const existingTagArray = Array.from(existingTag);
+
+        existingTagArray.forEach((element) => {
+          if (
+            element.innerText.replace(/\s+/g, "") ===
+            dataIngredientOnClick.replace(/\s+/g, "")
+          ) {
+            const object = element;
+            object.style.display = "block";
+          }
+        });
+      });
+    });
+  }
+
+  function SelectApplianceandRecipe() {
+    const applianceLi = document.getElementsByClassName("device-list");
+    const applianceLiArray = Array.from(applianceLi);
+
+    applianceLiArray.forEach((e) => {
+      e.addEventListener("click", () => {
+        const dataApplianceOnClick = e.innerHTML;
+
+        const resultAppliance = recipes.filter((recipe) =>
+          recipe.appliance
+            .toLocaleLowerCase()
+            .includes(dataApplianceOnClick.toLocaleLowerCase())
+        );
+        ResetAllList();
+        ResetRecipe();
+
+        ListFactory(resultAppliance);
+        resultAppliance.forEach((item) => {
+          RecipecardFactory(item);
+        });
+        const existingTag =
+          document.getElementsByClassName(`tag-bar__device-tag`);
+        const existingTagArray = Array.from(existingTag);
+        existingTagArray.forEach((element) => {
+          if (
+            element.innerText.replace(/\s+/g, "") ===
+            dataApplianceOnClick.replace(/\s+/g, "")
+          ) {
+            const object = element;
+            object.style.display = "block";
+          }
+        });
+      });
+    });
+  }
+
+  function SelectUstensilsandRecipe() {
+    const ustensilsLi = document.getElementsByClassName("ustensils-list");
+    const ustensilsLiArray = Array.from(ustensilsLi);
+
+    ustensilsLiArray.forEach((e) => {
+      e.addEventListener("click", () => {
+        const dataUstensilsOnClick = e.innerHTML;
+
+        function UstensilFind(recipe) {
+          if (
+            recipe.ustensils.find((object) =>
+              object
+                .toLocaleLowerCase()
+                .includes(dataUstensilsOnClick.toLocaleLowerCase())
+            )
+          )
+            return true;
+          return false;
+        }
+        const resultUstensils = recipes.filter((recipe) =>
+          UstensilFind(recipe, dataUstensilsOnClick)
+        );
+
+        ResetAllList();
+        ResetRecipe();
+
+        ListFactory(resultUstensils);
+        resultUstensils.forEach((item) => {
+          RecipecardFactory(item);
+        });
+
+        const existingTag = document.getElementsByClassName(
+          `tag-bar__ustensils-tag`
+        );
+
+        const existingTagArray = Array.from(existingTag);
+
+        existingTagArray.forEach((element) => {
+          if (
+            element.innerText.replace(/\s+/g, "") ===
+            dataUstensilsOnClick.replace(/\s+/g, "")
+          ) {
+            const object = element;
+            object.style.display = "block";
+          }
+        });
+      });
+    });
+  }
 
   function ingredientSearch() {
     const ingredientData = ingredientInput.value;
@@ -40,14 +167,14 @@ export default function searchByTag(recipes) {
     });
     const finalIngredientResult = [...new Set(resultIngredientName)];
 
-    TagAndListReset("ingredient");
+    ListReset("ingredient");
 
     finalIngredientResult.forEach((recipe) => CreateList(recipe, "ingredient"));
-    finalIngredientResult.forEach((recipe) => CreateTag(recipe, "ingredient"));
   }
 
   ingredientInput.addEventListener("keyup", () => {
     ingredientSearch();
+    SelectIngredientandRecipe();
   });
 
   function deviceSearch() {
@@ -65,14 +192,14 @@ export default function searchByTag(recipes) {
     });
     const finalApplianceResult = [...new Set(resultApplianceName)];
 
-    TagAndListReset("device");
+    ListReset("device");
 
     finalApplianceResult.forEach((recipe) => CreateList(recipe, "device"));
-    finalApplianceResult.forEach((recipe) => CreateTag(recipe, "device"));
   }
 
   deviceInput.addEventListener("keyup", () => {
     deviceSearch();
+    SelectApplianceandRecipe();
   });
 
   function ustensilSearch() {
@@ -93,65 +220,16 @@ export default function searchByTag(recipes) {
 
     const finalUstensilsResult = [...new Set(resultUstensilsName)];
 
-    TagAndListReset("ustensils");
+    ListReset("ustensils");
 
     finalUstensilsResult.forEach((recipe) => CreateList(recipe, "ustensils"));
-    finalUstensilsResult.forEach((recipe) => CreateTag(recipe, "ustensils"));
   }
   ustensilsInput.addEventListener("keyup", () => {
     ustensilSearch();
+    SelectUstensilsandRecipe();
   });
 
-  function SelectIngredientandRecipe() {}
-
-  const ingredientLi = document.getElementsByClassName("ingredient-list");
-  const ingredientLiArray = Array.from(ingredientLi);
-  console.log(ingredientLi);
-  ingredientLiArray.forEach((e) => {
-    e.addEventListener("click", () => {
-      console.log(e.innerHTML);
-      const dataIngredientOnClick = e.innerHTML;
-
-      function IngredientFind(recipe) {
-        if (
-          recipe.ingredients.find((object) =>
-            object.ingredient
-              .toLocaleLowerCase()
-              .includes(dataIngredientOnClick.toLocaleLowerCase())
-          )
-        )
-          return true;
-        return false;
-      }
-
-      const resultIngredient = recipes.filter((recipe) =>
-        IngredientFind(recipe, dataIngredientOnClick)
-      );
-
-      const recipeSection = document.querySelector(".displayrecipe");
-      recipeSection.innerHTML = " ";
-
-      resultIngredient.forEach((item) => {
-        RecipecardFactory(item);
-      });
-
-      console.log(resultIngredient);
-
-      const existigTag = document.getElementsByClassName(
-        `tag-bar__ingredient-tag`
-      );
-
-      const existigTagArray = Array.from(existigTag);
-
-      existigTagArray.forEach((element) => {
-        if (
-          element.innerText.replace(/\s+/g, "") ===
-          dataIngredientOnClick.replace(/\s+/g, "")
-        ) {
-          const object = element;
-          object.style.display = "block";
-        }
-      });
-    });
-  });
+  SelectIngredientandRecipe();
+  SelectApplianceandRecipe();
+  SelectUstensilsandRecipe();
 }

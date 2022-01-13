@@ -34,7 +34,45 @@ const CreateList = (type, category) => {
   listContainer.appendChild(list);
 };
 
-function ListAndTagsFactory(recipes) {
+function TagsFactory(recipes) {
+  // création du total des éléments
+  const totalApplience = [];
+  const totalIngredients = [];
+  const totalUstensils = [];
+
+  recipes.forEach((recipe) => {
+    totalApplience.push(recipe.appliance);
+    const subIngredient = recipe.ingredients;
+    subIngredient.forEach((ingredient) => {
+      totalIngredients.push(ingredient.ingredient);
+    });
+    const SubUstensils = recipe.ustensils;
+    SubUstensils.forEach((ustensil) => {
+      totalUstensils.push(ustensil);
+    });
+  });
+  // réduction que chaque élément soit unique
+  const uniqueApplience = [...new Set(totalApplience)];
+  const uniqueIngredients = [...new Set(totalIngredients)];
+  const uniqueUstensils = [...new Set(totalUstensils)];
+
+  // création des éléments dans la liste
+  uniqueIngredients.forEach((ingredient) => {
+    CreateTag(ingredient, "ingredient");
+  });
+
+  // création des éléments dans la liste
+  uniqueApplience.forEach((applience) => {
+    CreateTag(applience, "device");
+  });
+
+  // création des éléments dans la liste
+  uniqueUstensils.forEach((ustensil) => {
+    CreateTag(ustensil, "ustensils");
+  });
+}
+
+function ListFactory(recipes) {
   // création du total des éléments
   const totalApplience = [];
   const totalIngredients = [];
@@ -59,20 +97,16 @@ function ListAndTagsFactory(recipes) {
   // création des éléments dans la liste
   uniqueIngredients.forEach((ingredient) => {
     CreateList(ingredient, "ingredient");
-    CreateTag(ingredient, "ingredient");
   });
 
   // création des éléments dans la liste
   uniqueApplience.forEach((applience) => {
     CreateList(applience, "device");
-    CreateTag(applience, "device");
   });
 
   // création des éléments dans la liste
   uniqueUstensils.forEach((ustensil) => {
     CreateList(ustensil, "ustensils");
-    CreateTag(ustensil, "ustensils");
   });
 }
-
-export { CreateTag, CreateList, ListAndTagsFactory };
+export { CreateTag, CreateList, TagsFactory, ListFactory };

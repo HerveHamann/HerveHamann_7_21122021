@@ -1,28 +1,9 @@
-import { ListAndTagsFactory } from "../factories/listandtags.js";
+import { ListFactory } from "../factories/listandtags.js";
 import RecipecardFactory from "../factories/recipecard.js";
+import { ResetAllList, ResetRecipe } from "./utilsFunction.js";
+import searchByTag from "./bytagSearch.js";
 
-function ResetResult() {
-  // reset des recettes listes et tags à chaque usage de la recherche principale
-  const recipeSection = document.querySelector(".displayrecipe");
-  const ingredientListContainer = document.querySelector(
-    `.combox-ingredient__combobox__list`
-  );
-  const deviceListContainer = document.querySelector(
-    `.combox-device__combobox__list`
-  );
-  const ustensilsListContainer = document.querySelector(
-    `.combox-ustensils__combobox__list`
-  );
-  const tagBar = document.querySelector(".tag-bar");
-
-  recipeSection.innerHTML = " ";
-  ingredientListContainer.innerHTML = " ";
-  deviceListContainer.innerHTML = " ";
-  ustensilsListContainer.innerHTML = " ";
-  tagBar.innerHTML = " ";
-}
-
-function mainResearch(recipes) {
+export default function mainResearch(recipes) {
   const mainSearch = document.getElementById("research");
 
   function IngredientFind(recipe, input) {
@@ -66,11 +47,14 @@ function mainResearch(recipes) {
       // tableau des résultats uniques
       const uniqueResult = [...new Set(totalResult)];
 
-      ResetResult();
+      ResetAllList();
+      ResetRecipe();
       // Affichage des résultats de la recherche
 
       uniqueResult.forEach((recipe) => RecipecardFactory(recipe));
-      ListAndTagsFactory(uniqueResult);
+      ListFactory(uniqueResult);
+
+      searchByTag(uniqueResult);
 
       const noResult = document.querySelector(".noresult");
       if (uniqueResult.length === 0) {
@@ -83,6 +67,5 @@ function mainResearch(recipes) {
   mainSearch.addEventListener("keyup", () => {
     Research();
   });
+  searchByTag(recipes);
 }
-
-export { ResetResult, mainResearch };
