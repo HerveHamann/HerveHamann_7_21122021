@@ -1,6 +1,6 @@
-import { ListFactory } from "../factories/listandtags.js";
+import { listResetAll, ListUpdateAll } from "../factories/listandtags.js";
 import RecipecardFactory from "../factories/recipecard.js";
-import { ResetAllList, ResetRecipe } from "./utilsFunction.js";
+import { ResetRecipe } from "./utilsFunction.js";
 import searchByTag from "./bytagSearch.js";
 
 export default function mainResearch(recipes) {
@@ -47,12 +47,12 @@ export default function mainResearch(recipes) {
       // tableau des résultats uniques
       const uniqueResult = [...new Set(totalResult)];
 
-      ResetAllList();
+      listResetAll();
       ResetRecipe();
       // Affichage des résultats de la recherche
 
       uniqueResult.forEach((recipe) => RecipecardFactory(recipe));
-      ListFactory(uniqueResult);
+      uniqueResult.forEach((recipe) => ListUpdateAll(recipe));
 
       searchByTag(uniqueResult);
 

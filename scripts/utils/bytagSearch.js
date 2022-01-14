@@ -1,12 +1,80 @@
-import { CreateList, ListFactory } from "../factories/listandtags.js";
+import {
+  ListUpdate,
+  ListUpdateAll,
+  listResetAll,
+} from "../factories/listandtags.js";
 import RecipecardFactory from "../factories/recipecard.js";
 
-import { ResetAllList, ResetRecipe, ListReset } from "./utilsFunction.js";
+import { ResetRecipe } from "./utilsFunction.js";
 
 export default function searchByTag(recipes) {
   const ingredientInput = document.getElementById("ingredient");
   const deviceInput = document.getElementById("device");
   const ustensilsInput = document.getElementById("ustensils");
+
+  let ingrebox = [];
+  const recipeByIngrebox = [];
+  /// /LA J'AI SORTI çA en changeant dataIngredientOnClick par ingrebox, début pour tout faire dehors
+  // début de chantier de la fonction (avec event? qui display tout)
+
+  function PushAllRecipeFindByIngre() {
+    function IngredientFind(recipe, ingre) {
+      if (
+        recipe.ingredients.find(
+          (object) =>
+            object.ingredient
+              .toLocaleLowerCase()
+              .includes(ingre.toLocaleLowerCase())
+          //   &&
+          // object.ingredient.length === ingre.length
+        )
+      )
+        return true;
+      return false;
+    }
+    // Pour chaque ingrédient, on filtre les recettes
+
+    ingrebox.forEach((ingre) => {
+      const allrecipeByIngre = recipes.filter((recipe) =>
+        IngredientFind(recipe, ingre)
+      );
+      ingrebox = [];
+      // et on les envoie dans un tableau (tableau de tableau de recettes)
+      recipeByIngrebox.push(allrecipeByIngre);
+    });
+
+    console.log(recipeByIngrebox.length);
+    // on cree un tableau avec toutes les recettes
+    const uniqueRecipeByIngrebox = recipeByIngrebox.flat(1);
+    console.log(uniqueRecipeByIngrebox);
+
+    // on compte dans ce tableau le nombre de fois qu'apparait chaque recette
+    // si une recette apparait x fois et que le tableau compte x tags, elle est commune
+    // alors on push la recette dans le tableau final
+    const counts = {};
+    const finalIngredientResult = [];
+    uniqueRecipeByIngrebox.forEach((x) => {
+      counts[x.id] = (counts[x.id] || 0) + 1;
+      console.log(x);
+      if (parseInt(counts[x.id], 10) === recipeByIngrebox.length) {
+        finalIngredientResult.push(x);
+      }
+    });
+    console.log(counts);
+    console.log(finalIngredientResult);
+
+    listResetAll();
+
+    finalIngredientResult.forEach((item) => {
+      ListUpdateAll(item);
+    });
+
+    ResetRecipe();
+
+    finalIngredientResult.forEach((item) => {
+      RecipecardFactory(item);
+    });
+  }
 
   function SelectIngredientandRecipe() {
     const ingredientLi = document.getElementsByClassName("ingredient-list");
@@ -15,33 +83,9 @@ export default function searchByTag(recipes) {
     ingredientLiArray.forEach((e) => {
       e.addEventListener("click", () => {
         const dataIngredientOnClick = e.innerHTML;
+        ingrebox.push(dataIngredientOnClick);
 
-        function IngredientFind(recipe) {
-          if (
-            recipe.ingredients.find(
-              (object) =>
-                object.ingredient
-                  .toLocaleLowerCase()
-                  .includes(dataIngredientOnClick.toLocaleLowerCase()) &&
-                object.ingredient.length === dataIngredientOnClick.length
-            )
-          )
-            return true;
-          return false;
-        }
-
-        const resultIngredient = recipes.filter((recipe) =>
-          IngredientFind(recipe, dataIngredientOnClick)
-        );
-
-        console.log(resultIngredient);
-        ResetAllList();
-        ResetRecipe();
-        ListFactory(resultIngredient);
-
-        resultIngredient.forEach((item) => {
-          RecipecardFactory(item);
-        });
+        PushAllRecipeFindByIngre();
 
         const existingTag = document.getElementsByClassName(
           `tag-bar__ingredient-tag`
@@ -75,13 +119,18 @@ export default function searchByTag(recipes) {
             .toLocaleLowerCase()
             .includes(dataApplianceOnClick.toLocaleLowerCase())
         );
-        ResetAllList();
-        ResetRecipe();
 
-        ListFactory(resultAppliance);
+        ResetRecipe();
+        listResetAll();
+
+        resultAppliance.forEach((item) => {
+          ListUpdateAll(item);
+        });
+
         resultAppliance.forEach((item) => {
           RecipecardFactory(item);
         });
+
         const existingTag =
           document.getElementsByClassName(`tag-bar__device-tag`);
         const existingTagArray = Array.from(existingTag);
@@ -121,10 +170,13 @@ export default function searchByTag(recipes) {
           UstensilFind(recipe, dataUstensilsOnClick)
         );
 
-        ResetAllList();
+        listResetAll();
+
+        resultUstensils.forEach((item) => {
+          ListUpdateAll(item);
+        });
         ResetRecipe();
 
-        ListFactory(resultUstensils);
         resultUstensils.forEach((item) => {
           RecipecardFactory(item);
         });
@@ -150,26 +202,7 @@ export default function searchByTag(recipes) {
 
   function ingredientSearch() {
     const ingredientData = ingredientInput.value;
-
-    const resultIngredient = recipes.map((recipe) =>
-      recipe.ingredients.filter((ingredient) =>
-        ingredient.ingredient
-          .toLocaleLowerCase()
-          .includes(ingredientData.toLocaleLowerCase())
-      )
-    );
-
-    const resultIngredientMerge = resultIngredient.flat(1);
-    const resultIngredientName = [];
-
-    resultIngredientMerge.forEach((ingredient) => {
-      resultIngredientName.push(ingredient.ingredient);
-    });
-    const finalIngredientResult = [...new Set(resultIngredientName)];
-
-    ListReset("ingredient");
-
-    finalIngredientResult.forEach((recipe) => CreateList(recipe, "ingredient"));
+    ListUpdate(ingredientData);
   }
 
   ingredientInput.addEventListener("keyup", () => {
@@ -179,22 +212,7 @@ export default function searchByTag(recipes) {
 
   function deviceSearch() {
     const applianceData = deviceInput.value;
-
-    const resultAppliance = recipes.filter((recipe) =>
-      recipe.appliance
-        .toLocaleLowerCase()
-        .includes(applianceData.toLocaleLowerCase())
-    );
-    const resultApplianceName = [];
-
-    resultAppliance.forEach((appliance) => {
-      resultApplianceName.push(appliance.appliance);
-    });
-    const finalApplianceResult = [...new Set(resultApplianceName)];
-
-    ListReset("device");
-
-    finalApplianceResult.forEach((recipe) => CreateList(recipe, "device"));
+    ListUpdate(applianceData);
   }
 
   deviceInput.addEventListener("keyup", () => {
@@ -204,25 +222,7 @@ export default function searchByTag(recipes) {
 
   function ustensilSearch() {
     const ustensilData = ustensilsInput.value;
-
-    const resultUstensils = recipes.map((recipe) =>
-      recipe.ustensils.filter((ustensil) =>
-        ustensil.toLocaleLowerCase().includes(ustensilData.toLocaleLowerCase())
-      )
-    );
-
-    const resultUstensilsMerge = resultUstensils.flat(1);
-    const resultUstensilsName = [];
-
-    resultUstensilsMerge.forEach((ustensil) => {
-      resultUstensilsName.push(ustensil);
-    });
-
-    const finalUstensilsResult = [...new Set(resultUstensilsName)];
-
-    ListReset("ustensils");
-
-    finalUstensilsResult.forEach((recipe) => CreateList(recipe, "ustensils"));
+    ListUpdate(ustensilData);
   }
   ustensilsInput.addEventListener("keyup", () => {
     ustensilSearch();

@@ -17,3 +17,18 @@ recipes.forEach((recipe) => RecipecardFactory(recipe));
 // RESERARCH FONCTION//
 
 mainResearch(recipes);
+
+// const AllListItem = document.querySelectorAll(
+//   ".ingredient-list,.device-list,.ustensils-list"
+// );
+
+// const AllListItemArray = Array.from(AllListItem);
+// console.log(AllListItemArray);
+
+// AllListItemArray.forEach((element) => {
+//   console.log(element.innerText);
+//   //   if (element.innerText !== input) {
+//   //     const object = element;
+//   //     object.style.display = "none";
+//   //   }
+// });

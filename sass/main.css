@@ -180,6 +180,7 @@ header h1 {
 }
 .combox-ingredient__combobox__list li {
   width: 150px;
+  display: block;
 }
 
 #ingredient {

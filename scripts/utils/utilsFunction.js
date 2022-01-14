@@ -18,10 +18,4 @@ function ResetRecipe() {
   recipeSection.innerHTML = " ";
 }
 
-function ListReset(type) {
-  const ListContainer = document.querySelector(
-    `.combox-${type}__combobox__list`
-  );
-  ListContainer.innerHTML = " ";
-}
-export { ResetAllList, ResetRecipe, ListReset };
+export { ResetAllList, ResetRecipe };

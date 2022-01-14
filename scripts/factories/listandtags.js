@@ -56,17 +56,17 @@ function TagsFactory(recipes) {
   const uniqueIngredients = [...new Set(totalIngredients)];
   const uniqueUstensils = [...new Set(totalUstensils)];
 
-  // création des éléments dans la liste
+  // création des tags
   uniqueIngredients.forEach((ingredient) => {
     CreateTag(ingredient, "ingredient");
   });
 
-  // création des éléments dans la liste
+  // création des tags
   uniqueApplience.forEach((applience) => {
     CreateTag(applience, "device");
   });
 
-  // création des éléments dans la liste
+  // création des tags
   uniqueUstensils.forEach((ustensil) => {
     CreateTag(ustensil, "ustensils");
   });
@@ -109,4 +109,84 @@ function ListFactory(recipes) {
     CreateList(ustensil, "ustensils");
   });
 }
-export { CreateTag, CreateList, TagsFactory, ListFactory };
+
+function ListUpdate(input) {
+  const AllListItem = document.querySelectorAll(
+    ".ingredient-list,.device-list,.ustensils-list"
+  );
+
+  const AllListItemArray = Array.from(AllListItem);
+
+  AllListItemArray.forEach((element) => {
+    const object = element;
+    object.style.display = "none";
+    if (
+      element.innerText.toLocaleLowerCase().includes(input.toLocaleLowerCase())
+    ) {
+      object.style.display = "block";
+    }
+  });
+}
+
+function listResetAll() {
+  const AllListItem = document.querySelectorAll(
+    ".ingredient-list,.device-list,.ustensils-list"
+  );
+
+  const AllListItemArray = Array.from(AllListItem);
+
+  AllListItemArray.forEach((element) => {
+    const object = element;
+
+    object.style.display = "none";
+  });
+}
+
+function ListUpdateAll(recipe) {
+  const AllListItem = document.querySelectorAll(
+    ".ingredient-list,.device-list,.ustensils-list"
+  );
+
+  const AllListItemArray = Array.from(AllListItem);
+
+  AllListItemArray.forEach((element) => {
+    const listText = element.innerText;
+    const object = element;
+    function IngredientFind() {
+      if (
+        recipe.ingredients.find(
+          (ingre) =>
+            ingre.ingredient
+              .toLocaleLowerCase()
+              .includes(listText.toLocaleLowerCase()) &&
+            ingre.ingredient.length === listText.length
+        )
+      )
+        return true;
+      return false;
+    }
+    function UstensilFind() {
+      if (
+        recipe.ustensils.find(
+          (usten) =>
+            usten.toLocaleLowerCase().includes(listText.toLocaleLowerCase()) &&
+            usten.length === listText.length
+        )
+      )
+        return true;
+      return false;
+    }
+    if (
+      (listText
+        .toLocaleLowerCase()
+        .includes(recipe.appliance.toLocaleLowerCase()) &&
+        recipe.appliance.length === listText.length) ||
+      UstensilFind(listText) ||
+      IngredientFind(listText)
+    ) {
+      object.style.display = "block";
+    }
+  });
+}
+
+export { TagsFactory, ListFactory, ListUpdate, ListUpdateAll, listResetAll };
