@@ -60,7 +60,7 @@ const recipes = [
         quantity: 5,
       },
       {
-        ingredient: "Lait de Coco",
+        ingredient: "Lait de coco",
         quantity: 100,
         unit: "ml",
       },
@@ -294,7 +294,7 @@ const recipes = [
         unit: "grammes",
       },
       {
-        ingredient: "farine",
+        ingredient: "Farine",
         quantity: 90,
         unit: "grammes",
       },
@@ -1115,7 +1115,7 @@ const recipes = [
     description:
       "Découper en cubes les carottes et pommes de terre. Faire revenir dans du beurre. Ajouter les lardons, une fois les lardons dorés, ajouter un grand verre d'eau. Ajouter les petit poids et les haricots verts ( tous deux pré cuits ). Ajouter Sel, poivre, thyms et laurier",
     appliance: "Poële",
-    ustensils: ["Couteau", "économe"],
+    ustensils: ["couteau", "économe"],
   },
   {
     id: 32,
@@ -1553,7 +1553,7 @@ const recipes = [
         unit: "grammes",
       },
       {
-        ingredient: "farine",
+        ingredient: "Farine",
         quantity: 40,
         unit: "grammes",
       },

@@ -34,7 +34,7 @@ const CreateList = (type, category) => {
   listContainer.appendChild(list);
 };
 
-function TagsFactory(recipes) {
+export default function TagsandListFactory(recipes) {
   // création du total des éléments
   const totalApplience = [];
   const totalIngredients = [];
@@ -59,134 +59,18 @@ function TagsFactory(recipes) {
   // création des tags
   uniqueIngredients.forEach((ingredient) => {
     CreateTag(ingredient, "ingredient");
+    CreateList(ingredient, "ingredient");
   });
 
   // création des tags
   uniqueApplience.forEach((applience) => {
     CreateTag(applience, "device");
+    CreateList(applience, "device");
   });
 
   // création des tags
   uniqueUstensils.forEach((ustensil) => {
     CreateTag(ustensil, "ustensils");
-  });
-}
-
-function ListFactory(recipes) {
-  // création du total des éléments
-  const totalApplience = [];
-  const totalIngredients = [];
-  const totalUstensils = [];
-
-  recipes.forEach((recipe) => {
-    totalApplience.push(recipe.appliance);
-    const subIngredient = recipe.ingredients;
-    subIngredient.forEach((ingredient) => {
-      totalIngredients.push(ingredient.ingredient);
-    });
-    const SubUstensils = recipe.ustensils;
-    SubUstensils.forEach((ustensil) => {
-      totalUstensils.push(ustensil);
-    });
-  });
-  // réduction que chaque élément soit unique
-  const uniqueApplience = [...new Set(totalApplience)];
-  const uniqueIngredients = [...new Set(totalIngredients)];
-  const uniqueUstensils = [...new Set(totalUstensils)];
-
-  // création des éléments dans la liste
-  uniqueIngredients.forEach((ingredient) => {
-    CreateList(ingredient, "ingredient");
-  });
-
-  // création des éléments dans la liste
-  uniqueApplience.forEach((applience) => {
-    CreateList(applience, "device");
-  });
-
-  // création des éléments dans la liste
-  uniqueUstensils.forEach((ustensil) => {
     CreateList(ustensil, "ustensils");
   });
 }
-
-function ListUpdate(input) {
-  const AllListItem = document.querySelectorAll(
-    ".ingredient-list,.device-list,.ustensils-list"
-  );
-
-  const AllListItemArray = Array.from(AllListItem);
-
-  AllListItemArray.forEach((element) => {
-    const object = element;
-    object.style.display = "none";
-    if (
-      element.innerText.toLocaleLowerCase().includes(input.toLocaleLowerCase())
-    ) {
-      object.style.display = "block";
-    }
-  });
-}
-
-function listResetAll() {
-  const AllListItem = document.querySelectorAll(
-    ".ingredient-list,.device-list,.ustensils-list"
-  );
-
-  const AllListItemArray = Array.from(AllListItem);
-
-  AllListItemArray.forEach((element) => {
-    const object = element;
-
-    object.style.display = "none";
-  });
-}
-
-function ListUpdateAll(recipe) {
-  const AllListItem = document.querySelectorAll(
-    ".ingredient-list,.device-list,.ustensils-list"
-  );
-
-  const AllListItemArray = Array.from(AllListItem);
-
-  AllListItemArray.forEach((element) => {
-    const listText = element.innerText;
-    const object = element;
-    function IngredientFind() {
-      if (
-        recipe.ingredients.find(
-          (ingre) =>
-            ingre.ingredient
-              .toLocaleLowerCase()
-              .includes(listText.toLocaleLowerCase()) &&
-            ingre.ingredient.length === listText.length
-        )
-      )
-        return true;
-      return false;
-    }
-    function UstensilFind() {
-      if (
-        recipe.ustensils.find(
-          (usten) =>
-            usten.toLocaleLowerCase().includes(listText.toLocaleLowerCase()) &&
-            usten.length === listText.length
-        )
-      )
-        return true;
-      return false;
-    }
-    if (
-      (listText
-        .toLocaleLowerCase()
-        .includes(recipe.appliance.toLocaleLowerCase()) &&
-        recipe.appliance.length === listText.length) ||
-      UstensilFind(listText) ||
-      IngredientFind(listText)
-    ) {
-      object.style.display = "block";
-    }
-  });
-}
-
-export { TagsFactory, ListFactory, ListUpdate, ListUpdateAll, listResetAll };
