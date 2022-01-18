@@ -2,5 +2,11 @@
   padding-top: 25px;
   display: flex;
   flex-wrap: wrap;
-  gap: 50px 50px;
+  gap: 40px 3.5%;
+  @include laptop {
+    gap: 40px 9.9%;
+  }
+  @include tablet {
+    gap: 40px 0%;
+  }
 }

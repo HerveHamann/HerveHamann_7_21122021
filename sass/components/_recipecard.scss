@@ -2,7 +2,12 @@
   &__recipecard {
     width: 30.64%;
     height: 364px;
-
+    @include laptop {
+      width: 45%;
+    }
+    @include tablet {
+      width: 100%;
+    }
     &__img {
       height: 178px;
       background-color: $color-img;

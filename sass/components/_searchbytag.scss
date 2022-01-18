@@ -1,6 +1,7 @@
 .combox-ingredient {
   background-color: $color-ingredient;
   @include combobox;
+  z-index: 99;
 
   &__combobox {
     width: 100%;
@@ -19,9 +20,14 @@
     }
     &__list {
       @include list;
+      background-color: $color-ingredient;
+      @include tablet {
+        width: 100%;
+      }
     }
     &__list li {
-      width: 150px;
+      width: 180px;
+      height: 35px;
       display: block;
     }
   }
@@ -39,6 +45,7 @@
 .combox-device {
   background-color: $color-device;
   @include combobox;
+  z-index: 98;
   &__combobox {
     width: 100%;
     &__combobox-searchfield {
@@ -55,9 +62,12 @@
     }
     &__list {
       @include list;
+      background-color: $color-device;
     }
     &__list li {
-      width: 150px;
+      width: 180px;
+      height: 35px;
+      display: block;
     }
   }
 }
@@ -74,6 +84,7 @@
 .combox-ustensils {
   background-color: $color-ustensils;
   @include combobox;
+  z-index: 97;
   &__combobox {
     width: 100%;
 
@@ -90,10 +101,13 @@
       }
     }
     &__list {
+      background-color: $color-ustensils;
       @include list;
     }
     &__list li {
-      width: 150px;
+      width: 180px;
+      height: 35px;
+      display: block;
     }
   }
 }

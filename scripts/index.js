@@ -7,6 +7,7 @@ import RecipecardFactory from "./factories/recipecard.js";
 function InitDisplay() {
   // Display des menus
   DisplayMenu();
+
   // creation des listes et des tags
   TagsandListFactory(recipes);
 

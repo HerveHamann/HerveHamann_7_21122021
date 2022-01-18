@@ -1,5 +1,7 @@
 export default function DisplayMenu() {
   const show = (type) => {
+    const body = document.querySelector("body");
+
     const box = document.querySelector(`.combox-${type}`);
     const comboBox = document.querySelector(`.combox-${type}__combobox`);
     const searchBar = document.getElementById(`${type}`);
@@ -10,9 +12,13 @@ export default function DisplayMenu() {
       `.combox-${type}__combobox__combobox-searchfield__arrowdown`
     );
     const list = document.querySelector(`.combox-${type}__combobox__list`);
+    if (body.style.width <= "769px") {
+      box.style.width = "100%";
 
-    box.style.width = "667px";
-    box.style.height = "397px";
+      box.style.maxWidth = "667px";
+    }
+
+    box.style.height = list.style.height;
     box.style.alignItems = "start";
     comboBox.style.marginTop = "23px";
     searchBar.style.display = "block";

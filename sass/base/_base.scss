@@ -10,8 +10,14 @@ body {
   max-width: 1440px;
   margin: auto;
   padding: 0 100px 0 100px;
+  @include tablet {
+    padding: 0px 25px 0px 25px;
+  }
 }
 * {
   text-decoration: none;
   list-style-type: none;
+}
+::-webkit-scrollbar {
+  width: 10px;
 }

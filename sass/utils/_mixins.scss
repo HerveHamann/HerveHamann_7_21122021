@@ -29,7 +29,6 @@
   align-items: center;
   cursor: pointer;
   position: relative;
-  z-index: 99;
 }
 
 @mixin input {
@@ -45,13 +44,32 @@
 }
 
 @mixin list {
-  height: 328px;
+  max-height: 328px;
   margin-top: 23px;
   display: none;
   flex-direction: row;
   flex-flow: wrap;
   row-gap: 10px;
-  column-gap: 70px;
+  column-gap: 20px;
   padding: 0 19px 16px 19px;
   overflow-y: scroll;
+  ::-webkit-scrollbar {
+    width: 45px;
+  }
+}
+
+@mixin laptop {
+  @media screen and (max-width: 1024px) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media screen and (max-width: 769px) {
+    @content;
+  }
+}
+@mixin mobile {
+  @media screen and (max-width: 425px) {
+    @content;
+  }
 }
