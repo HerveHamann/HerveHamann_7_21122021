@@ -211,10 +211,8 @@ header h1 {
        column-gap: 20px;
   padding: 0 19px 16px 19px;
   overflow-y: scroll;
+  border-radius: 5px;
   background-color: #3282f7;
-}
-.combox-ingredient__combobox__list ::-webkit-scrollbar {
-  width: 45px;
 }
 @media screen and (max-width: 769px) {
   .combox-ingredient__combobox__list {
@@ -296,10 +294,8 @@ header h1 {
        column-gap: 20px;
   padding: 0 19px 16px 19px;
   overflow-y: scroll;
+  border-radius: 5px;
   background-color: #68d9a4;
-}
-.combox-device__combobox__list ::-webkit-scrollbar {
-  width: 45px;
 }
 .combox-device__combobox__list li {
   width: 180px;
@@ -377,9 +373,7 @@ header h1 {
        column-gap: 20px;
   padding: 0 19px 16px 19px;
   overflow-y: scroll;
-}
-.combox-ustensils__combobox__list ::-webkit-scrollbar {
-  width: 45px;
+  border-radius: 5px;
 }
 .combox-ustensils__combobox__list li {
   width: 180px;

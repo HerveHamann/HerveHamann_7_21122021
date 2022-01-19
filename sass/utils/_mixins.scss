@@ -53,9 +53,7 @@
   column-gap: 20px;
   padding: 0 19px 16px 19px;
   overflow-y: scroll;
-  ::-webkit-scrollbar {
-    width: 45px;
-  }
+  border-radius: $radius-box;
 }
 
 @mixin laptop {
