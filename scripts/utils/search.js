@@ -21,26 +21,17 @@ export default function Search(recipes) {
     if (input.length >= 3) {
       // étape de recherche des noms des recettes correspondantes
       inputbox.push(input);
-      const resultName = recipes.filter((recipe) =>
-        recipe.name.toLocaleLowerCase().includes(input.toLocaleLowerCase())
-      );
 
-      // étape de recherche des ingrédients des recettes correspondantes
-      const resultIngredient = recipes.filter((recipe) =>
-        IngredientFindOpened(recipe, input)
+      let totalResult = [];
+
+      totalResult = recipes.filter(
+        (recipe) =>
+          recipe.name.toLocaleLowerCase().includes(input.toLocaleLowerCase()) ||
+          IngredientFindOpened(recipe, input) ||
+          recipe.description
+            .toLocaleLowerCase()
+            .includes(input.toLocaleLowerCase())
       );
-      // étape de recherche des descriptions des recettes correspondantes
-      const resultDescription = recipes.filter((recipe) =>
-        recipe.description
-          .toLocaleLowerCase()
-          .includes(input.toLocaleLowerCase())
-      );
-      // création du tableau contentant tous les résultats
-      const totalResult = [
-        ...resultName,
-        ...resultIngredient,
-        ...resultDescription,
-      ];
 
       let uniqueResult = [];
       uniqueResult = [...new Set(totalResult)];
