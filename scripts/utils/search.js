@@ -22,44 +22,21 @@ export default function Search(recipes) {
       // étape de recherche des noms des recettes correspondantes
       inputbox.push(input);
 
-      const resultName = [];
+      const totalResult = [];
 
       for (let i = 0; i < recipes.length; i += 1) {
         if (
           recipes[i].name
             .toLocaleLowerCase()
-            .includes(input.toLocaleLowerCase())
-        ) {
-          resultName.push(recipes[i]);
-        }
-      }
-
-      const resultIngredient = [];
-
-      for (let i = 0; i < recipes.length; i += 1) {
-        if (IngredientFindOpened(recipes[i], input)) {
-          resultIngredient.push(recipes[i]);
-        }
-      }
-
-      const resultDescription = [];
-
-      for (let i = 0; i < recipes.length; i += 1) {
-        if (
+            .includes(input.toLocaleLowerCase()) ||
+          IngredientFindOpened(recipes[i], input) ||
           recipes[i].description
             .toLocaleLowerCase()
             .includes(input.toLocaleLowerCase())
         ) {
-          resultDescription.push(recipes[i]);
+          totalResult.push(recipes[i]);
         }
       }
-
-      // création du tableau contentant tous les résultats
-      const totalResult = [
-        ...resultName,
-        ...resultIngredient,
-        ...resultDescription,
-      ];
 
       let uniqueResult = [];
       uniqueResult = [...new Set(totalResult)];
