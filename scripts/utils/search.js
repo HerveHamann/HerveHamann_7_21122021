@@ -16,7 +16,7 @@ export default function Search(recipes) {
   function PushAllRecipeFind() {
     const mainSearch = document.getElementById("research");
     const input = mainSearch.value;
-    console.log(input);
+
     // étape de vérification du nombre de caractères
     if (input.length >= 3) {
       // étape de recherche des noms des recettes correspondantes
@@ -83,14 +83,6 @@ export default function Search(recipes) {
         .shift()
         .filter((v) => recipebox.every((a) => a.indexOf(v) !== -1));
     }
-    console.log(inputbox);
-    console.log(ingrebox);
-    console.log(appliancebox);
-    console.log(ustensilbox);
-
-    console.log(recipebox);
-
-    console.log(result);
 
     listResetAll();
 
